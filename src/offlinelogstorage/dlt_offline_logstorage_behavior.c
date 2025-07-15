@@ -1108,7 +1108,7 @@ int dlt_logstorage_prepare_on_msg(DltLogStorageFilterConfig *config,
                 if ((config->sync == DLT_LOGSTORAGE_SYNC_ON_MSG) ||
                     (config->sync == DLT_LOGSTORAGE_SYNC_UNSET)) {
                     if (config->gzip_compression == DLT_LOGSTORAGE_GZIP_ON) {
-                        if (fsync(fileno(config->gzlog)) != 0) {
+                        if (fsync(fileno((FILE*)config->gzlog)) != 0) {
                             if (errno != ENOSYS) {
                                 dlt_vlog(LOG_ERR, "%s: failed to sync gzip log file\n", __func__);
                             }
